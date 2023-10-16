@@ -1,0 +1,46 @@
+<!-- Cart -->
+<app-cart 
+    class="vh-100 vw-100 z-2" 
+    [cart]="cart" 
+    [totalAmount]="totalAmount"
+    (finalCartFunction)="cartUtilityFunction($event)" 
+    [ngClass]="{'d-none' : !showCart}"
+>
+</app-cart>
+
+<!-- Book Details -->
+<app-book-details 
+    [book]="toDisplayBook"
+    (cartFunction)="cartUtilityFunction($event)" 
+    class="vh-100 vw-100 z-1"
+    >
+</app-book-details>
+
+<!-- Greeting Image -->
+<div class="image-container w-100 d-flex justify-content-center">
+    <img src="../../assets/landing-banner.png" class="img-fluid">
+</div>
+
+<!-- Search Bar -->
+<div class="d-flex ms-auto flex-row-reverse align-items-center" style="padding: 100px 20px 10px 0;">
+    <form [formGroup]="searchForm" class="d-flex" role="search">
+        <input formControlName="searchQuery" class="form-control me-2" type="search" placeholder="Search">
+        <button (click)="filteredSearch()" class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <button (click)="viewAllBooks()" class="btn btn-outline-primary me-3" [ngClass]="{'d-none' : !isFilter}">View All
+        Books.</button>
+</div>
+
+
+<!-- Product Container -->
+<section id="allProductsSection" class="container mt-1 pt-1" style="min-height: 80vh;">
+    <div class="d-flex p-3 w-100 justify-content-center flex-wrap gap-3" id="products-container">
+        <app-book-card *ngFor="let currBook of filteredProducts" [book]="currBook"
+            (cartFunction)="cartUtilityFunction($event)" [id]="currBook?.ISBN"
+            class="position-relative col-8 col-sm-4 col-md-3 col-lg-2 overflow-x-hidden overflow-y-hidden rounded"
+            style="height: 300px;"
+            (cardDetailsEmitter)="displayCardDetails($event)"    
+        >
+        </app-book-card>
+    </div>
+</section>

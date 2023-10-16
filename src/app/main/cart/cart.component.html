@@ -1,0 +1,109 @@
+<!-- background -->
+<div
+  class="position-fixed vh-100 vw-100 d-flex align-items-center justify-content-center"
+  style="background-color: rgba(0, 0, 0, 0.3); z-index: 1000;"
+>
+<!-- container -->
+  <div
+    class="cart-container bg-light rounded-3 overflow-y-scroll overflow-x-hidden p-3 d-flex container-fluid align-items-center flex-column"
+    style="height: 70%; width: 75%;"
+  >
+    <!-- checkout title header -->
+    <div class="container p-1">
+      <div class="row fs-2 fw-bolder bg-light text-center h-25 pb-5">
+        <div class="d-flex align-items-center justify-content-center">CART</div>
+      </div>
+      <div class="row fs-2 fw-bolder bg-light text-center h-25 pb-1">
+        <div class="col-6 fs-4 fw-medium bg-light text-center h-25 text-start">
+          Product
+        </div>
+        <div class="col-2 fs-4 fw-medium bg-light text-center h-25">Qty</div>
+        <div class="col-2 fs-4 fw-medium bg-light text-center h-25">Rate</div>
+        <div class="col-2 fs-4 fw-medium bg-light text-center h-25">Price</div>
+      </div>
+    </div>
+
+    <!-- items list -->
+    <div id="checkout-product-container" class="container">
+      <div
+        *ngFor="let p of cart; let i=index"
+        class="row container item-container h-auto bg-light"
+      >
+        <div class="col-6 bg-light product-details d-flex">
+          <div
+            class="col-3 product-image-container"
+            style="width: 100px; height: 100px"
+          >
+            <img
+              [src]="p.product?.image"
+              alt=""
+              class="p-3"
+              style="max-width: 100%; max-height: 100%"
+            />
+          </div>
+          <div class="col-9 d-flex flex-column justify-content-center">
+            <div class="product-title fs-5 fw-semibold lh-sm">
+              {{ p.product?.title }}
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-2 quantity-btn d-flex align-items-center justify-content-center"
+        >
+          <button
+            (click)="removeFromCart(p.product?.ISBN)"
+            class="btn btn-outline-secondary fs-6"
+          >
+            -
+          </button>
+          <span class="item-quantity w-50 px-3 text-center fs-4 fw-light">{{
+            p.quantity
+          }}</span>
+          <button
+            (click)="addToCart(p.product?.ISBN)"
+            class="btn btn-outline-info fs-6"
+          >
+            +
+          </button>
+        </div>
+        <div class="col-2 fs-4 fw-light bg-light text-center my-auto price">
+          &euro; {{ p.product?.price?.displayValue }}
+        </div>
+        <div class="col-2 fs-4 fw-light bg-light text-center my-auto price">
+          &euro; {{p.currPrice}}
+        </div>
+      </div>
+    </div>
+
+    <!-- Total row -->
+    <div class="container">
+      <div
+        id="total-summary-container"
+        class="container row pt-1 bg-body-tertiary"
+      >
+        <div class="col-6 fs-4 fw-medium bg-light text-center h-25 p-3">
+          Total
+        </div>
+        <div class="col-2 fs-4 fw-medium bg-light text-center h-25 p-3"></div>
+        <div class="col-2 fs-4 fw-medium bg-light text-center h-25 p-3"></div>
+        <div
+          id="checkoutTotalPrice"
+          class="col-2 fs-3 fw-medium bg-light text-center h-25 p-3 text-orange"
+        >
+          &euro; {{totalAmount}}
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Button -->
+    <div class="conatiner d-flex mt-4 align-items-end">
+      <button
+        (click)="handlePayment()"
+        id="rzp-button1"
+        class="btn btn-info text-light fw-medium fs-4"
+      >
+        Proceed to Pay
+      </button>
+    </div>
+  </div>
+</div>

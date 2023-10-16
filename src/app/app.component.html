@@ -1,0 +1,21 @@
+<div class="d-flex flex-column position-relative" style="min-height: 100vh;">
+  <app-header 
+    (headerEmitter)="showCartToggle($event)" 
+    [cartIsEmpty] = "cartIsEmpty"
+  >
+  </app-header>
+  
+  <app-main 
+    class="flex-grow-1" 
+    style="padding-bottom: 2.5rem;" 
+    [showCart]="cartToggle"
+    (isCartEmptyEmitter)="isCartEmptyCatcher($event)"
+  >
+  </app-main>
+  
+  <app-footer 
+    class="position-absolute bottom-0 w-100" 
+    style="height: 2.5rem;"
+  >
+  </app-footer>
+</div>

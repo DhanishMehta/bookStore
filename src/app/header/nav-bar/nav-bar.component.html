@@ -1,0 +1,8 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-3 fw-bold" href="#" style="letter-spacing: -1px;" id="logo">BookWell.</a>
+      <div class="nav-item">
+        <button class="btn" (click)="showCartToggle()">Cart <i class="bi" [ngClass]="{'bi-bag' : cartIsEmpty, 'bi-bag-fill' : !cartIsEmpty}"></i></button>
+      </div>
+    </div>
+  </nav>

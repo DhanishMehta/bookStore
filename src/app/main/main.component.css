@@ -1,0 +1,9 @@
+img{
+    pointer-events: none;
+    user-select: none;
+}
+
+app-book-card:hover{
+    transform: scale(1.03);
+    transition: all 0.1s ease-in-out;
+}

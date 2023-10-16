@@ -1,0 +1,22 @@
+<button class="book-container d-flex align-items-center justify-content-center overflow-hidden rounded w-100 h-100"
+    (click)="displayDetails()"    
+>
+    <!-- Add to cart + price -->
+    <div class="pricing-details position-absolute d-flex flex-column h-100 w-100">
+        <div class="position-absolute ms-0 p-2">
+            <div class="rounded-circle bg-light text-center d-flex align-items-center justify-content-center"
+                style="height: 50px; width: 50px;">
+                <p class="position-absolute top-0 p-2" style="font-size: small;">&euro;</p>
+                <h6 class="m-0">{{book?.price?.displayValue}}</h6>
+            </div>
+        </div>
+        <button (click)="addToCart()" class="addToCart-btn btn btn-dark mt-auto" style="height: 50px;">
+            Add to Cart
+        </button>
+    </div>
+
+    <!-- Product Image -->
+    <div class="image-container d-flex align-items-center justify-content-center h-100 w-100">
+        <img [src]="book?.image" class="mh-100 w-auto" alt="...">
+    </div>
+</button>

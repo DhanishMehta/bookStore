@@ -1,0 +1,19 @@
+.addToCart-btn{
+    border: none;
+}
+
+
+.pricing-details{
+    visibility: hidden;
+}
+
+.book-container:hover{
+    z-index: initial+1000;
+    .pricing-details{
+        visibility: visible;
+    }
+}
+
+button{
+    border: none;
+}
